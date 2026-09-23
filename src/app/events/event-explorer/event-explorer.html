@@ -82,4 +82,49 @@
     </li>
     }
   </ul>
+
+  <!--
+  HTTP states. Uncomment in the API phase.
+
+        @if (catalog.events.isLoading()) {
+        Cargando eventos...
+        } @else if (catalog.events.error()) {
+        No se pudieron cargar los eventos
+        } @else if (catalog.events.hasValue()) {
+        {{ catalog.events.value().length }} eventos mostrados
+        }
+
+  @if (catalog.events.isLoading()) {
+  <ul class="grid" aria-hidden="true">
+    <li class="skeleton-card"></li>
+    <li class="skeleton-card"></li>
+    <li class="skeleton-card"></li>
+  </ul>
+  } @else if (catalog.events.error()) {
+  <div class="empty">
+    <span class="ms" aria-hidden="true">error</span>
+    <h2>No se pudieron cargar los eventos</h2>
+    <p>Revisa que la API esté en ejecución e inténtalo de nuevo.</p>
+    <button type="button" (click)="catalog.events.reload()">Reintentar</button>
+  </div>
+  } @else if (catalog.events.hasValue()) {
+  <ul class="grid">
+    @for (event of catalog.events.value(); track event.id) {
+    <li>
+      <app-event-card [event]="event" />
+    </li>
+    } @empty {
+    <li class="empty">
+      <span class="ms" aria-hidden="true">search_off</span>
+      <h2>No se encontraron eventos</h2>
+      <p>
+        Intenta modificando los filtros de búsqueda, seleccionando otra sede o explorando todas
+        las categorías disponibles.
+      </p>
+      <button type="button" (click)="catalog.reset()">Restablecer todos los filtros</button>
+    </li>
+    }
+  </ul>
+  }
+  -->
 </section>
