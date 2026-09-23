@@ -1,29 +1,28 @@
 import { Service, computed, signal } from '@angular/core';
+import { debounce, form } from '@angular/forms/signals';
 
 import { EVENTS } from './event.data';
 import { City, EventCategory, EventModality } from './event.model';
-import { AllFilter } from './event.constants';
 
 @Service()
 export class EventCatalog {
-  readonly query = signal('');
+  readonly filters = signal({
+    query: '',
+    city: 'all' as City | 'all',
+    category: 'all' as EventCategory | 'all',
+    modality: 'all' as EventModality | 'all',
+  });
 
-  readonly city = signal<City | AllFilter>('all');
-
-  readonly category =
-    signal<EventCategory | AllFilter>('all');
-
-  readonly modality =
-    signal<EventModality | AllFilter>('all');
+  readonly filtersForm = form(this.filters, (path) => {
+    debounce(path.query, 350);
+  });
 
   readonly filteredEvents = computed(() => {
-    const query = this.query().trim().toLowerCase();
-    const city = this.city();
-    const category = this.category();
-    const modality = this.modality();
+    const { query, city, category, modality } = this.filters();
+    const search = query.trim().toLowerCase();
 
     return EVENTS.filter((event) => {
-      const matchesSearch = query === '' || event.name.toLowerCase().includes(query);
+      const matchesSearch = search === '' || event.name.toLowerCase().includes(search);
       const matchesCity = city === 'all' || event.city === city;
       const matchesCategory = category === 'all' || event.category === category;
       const matchesModality = modality === 'all' || event.modality === modality;
@@ -33,9 +32,11 @@ export class EventCatalog {
   });
 
   reset(): void {
-    this.query.set('');
-    this.city.set('all');
-    this.category.set('all');
-    this.modality.set('all');
+    this.filters.set({
+      query: '',
+      city: 'all',
+      category: 'all',
+      modality: 'all',
+    });
   }
 }

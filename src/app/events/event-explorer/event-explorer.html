@@ -20,13 +20,10 @@
       <span class="sr-only">Buscar</span>
       <span class="ms" aria-hidden="true">search</span>
       <input
-        #searchInput
         id="search"
-        name="q"
         type="search"
         placeholder="Buscar eventos por nombre..."
-        [value]="catalog.query()"
-        (input)="setQuery(searchInput.value)"
+        [formField]="catalog.filtersForm.query"
       />
       <kbd>⌘K</kbd>
     </label>
@@ -34,13 +31,7 @@
     <div class="selects">
       <label>
         <span>Ciudad</span>
-        <select
-          #citySelect
-          id="city"
-          name="city"
-          [value]="catalog.city()"
-          (change)="setCity(citySelect.value)"
-        >
+        <select id="city" [formField]="catalog.filtersForm.city">
           @for (option of cityOptions; track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
           }
@@ -48,13 +39,7 @@
       </label>
       <label>
         <span>Disciplina</span>
-        <select
-          #categorySelect
-          id="category"
-          name="category"
-          [value]="catalog.category()"
-          (change)="setCategory(categorySelect.value)"
-        >
+        <select id="category" [formField]="catalog.filtersForm.category">
           @for (option of categoryOptions; track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
           }
@@ -62,13 +47,7 @@
       </label>
       <label>
         <span>Modalidad</span>
-        <select
-          #modalitySelect
-          id="modality"
-          name="modality"
-          [value]="catalog.modality()"
-          (change)="setModality(modalitySelect.value)"
-        >
+        <select id="modality" [formField]="catalog.filtersForm.modality">
           @for (option of modalityOptions; track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
           }
