@@ -1,1 +1,101 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --surface: #f9f9ff;
+  --surface-low: #f0f3ff;
+  --surface-container: #e7eeff;
+  --surface-high: #dee8ff;
+  --surface-highest: #d8e3fb;
+  --card: #fff;
+  --ink: #111c2d;
+  --ink-soft: #3d4947;
+  --muted: #5c6b68;
+  --primary: #00685f;
+  --primary-container: #008378;
+  --on-primary: #fff;
+  --primary-fixed: #89f5e7;
+  --secondary: #006c49;
+  --secondary-fixed: #6ffbbe;
+  --tertiary: #4648d4;
+  --tertiary-fixed: #e1e0ff;
+  --on-tertiary-fixed: #07006c;
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --line: #e2e8f0;
+  --shadow: 0 2px 8px -2px rgb(15 23 42 / 4%), 0 12px 24px -6px rgb(15 23 42 / 3%);
+  --shadow-hover: 0 10px 25px -5px rgb(13 148 136 / 8%), 0 8px 10px -6px rgb(15 23 42 / 4%);
+  --radius: 1.25rem;
+  --radius-control: 0.75rem;
+  --max: 80rem;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.57;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--surface);
+}
+
+body {
+  min-height: 100dvh;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+a,
+select,
+input {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.ms {
+  font-family: 'Material Symbols Outlined';
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

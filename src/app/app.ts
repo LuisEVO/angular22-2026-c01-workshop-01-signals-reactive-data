@@ -1,11 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { EventExplorer } from './events/event-explorer/event-explorer';
 
 @Component({
-  imports: [],
+  imports: [EventExplorer],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App {
-  protected readonly title = signal('angular22-2026-c01-workshop-01-signals-reactive-data');
-}
+export class App {}

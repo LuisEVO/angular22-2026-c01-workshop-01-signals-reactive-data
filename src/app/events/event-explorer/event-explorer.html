@@ -1,0 +1,85 @@
+<section class="explorer">
+  <header class="hero">
+    <div class="glow glow-a" aria-hidden="true"></div>
+    <div class="glow glow-b" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="live">
+        <span class="pulse" aria-hidden="true"></span>
+        Workshop 01 · Edición Latam 2026
+      </p>
+      <h1>Catálogo de Eventos <span>Tech</span></h1>
+      <p class="lede">
+        Frontend, backend, cloud e inteligencia artificial en vivo desde Lima, Bogotá y Santiago de
+        Chile. Conéctate con líderes de la industria e impulsa tu carrera de ingeniería.
+      </p>
+    </div>
+  </header>
+
+  <div class="filters" role="search">
+    <label class="search">
+      <span class="sr-only">Buscar</span>
+      <span class="ms" aria-hidden="true">search</span>
+      <input id="search" name="q" type="search" placeholder="Buscar por nombre, tecnología o speaker..." />
+      <kbd>⌘K</kbd>
+    </label>
+
+    <div class="selects">
+      <label>
+        <span>Ciudad</span>
+        <select id="city" name="city">
+          @for (option of cityOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        <span>Disciplina</span>
+        <select id="category" name="category">
+          @for (option of categoryOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        <span>Modalidad</span>
+        <select id="modality" name="modality">
+          @for (option of modalityOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <button class="reset" type="button">
+      <span class="ms" aria-hidden="true">restart_alt</span>
+      <span>Limpiar</span>
+    </button>
+  </div>
+
+  <div class="toolbar">
+    <div class="results">
+      <p aria-live="polite">
+        <span class="live-dot" aria-hidden="true"></span>
+        {{ events.length }} eventos mostrados
+      </p>
+    </div>
+  </div>
+
+  <ul class="grid">
+    @for (event of events; track event.id) {
+    <li>
+      <app-event-card [event]="event" />
+    </li>
+    } @empty {
+    <li class="empty">
+      <span class="ms" aria-hidden="true">search_off</span>
+      <h2>No se encontraron eventos</h2>
+      <p>
+        Intenta modificando los filtros de búsqueda, seleccionando otra sede o explorando todas
+        las categorías disponibles.
+      </p>
+      <button type="button">Restablecer todos los filtros</button>
+    </li>
+    }
+  </ul>
+</section>

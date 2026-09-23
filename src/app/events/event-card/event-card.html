@@ -1,0 +1,63 @@
+<article class="card" [attr.data-category]="event().category">
+  <div class="body">
+    <div class="meta">
+      <span class="badge" [attr.data-category]="event().category">
+        {{ categoryLabels[event().category] }}
+      </span>
+      <span class="badge modality" [attr.data-modality]="event().modality">
+        {{ modalityLabels[event().modality] }}
+      </span>
+    </div>
+
+    <div class="title-row">
+      <div class="date" aria-hidden="true">
+        <span>{{ calendar().month }}</span>
+        <strong>{{ calendar().day }}</strong>
+      </div>
+      <div>
+        <h2>{{ event().name }}</h2>
+        <p class="place">
+          <span class="ms" aria-hidden="true">{{ placeIcon() }}</span>
+          <span>{{ cityLabels[event().city] }} · {{ event().venue }}</span>
+        </p>
+      </div>
+    </div>
+
+    <p class="summary">{{ event().summary }}</p>
+  </div>
+
+  <footer class="foot">
+    <div class="speaker-row">
+      <div class="speaker">
+        <img [src]="event().speaker.avatar" [alt]="''" width="32" height="32" />
+        <span>
+          <strong>{{ event().speaker.name }}</strong>
+          <small>{{ event().speaker.role }}</small>
+        </span>
+      </div>
+      <span class="seats" [attr.data-tone]="seatTone()">
+        @if (seatTone() !== 'steady') {
+          <span class="dot" aria-hidden="true"></span>
+        }
+        {{ seatLabel() }}
+      </span>
+    </div>
+
+    <div class="cta">
+      @if (event().free) {
+        <button class="soft" type="button">
+          Acceso libre
+          <span class="ms" aria-hidden="true">open_in_new</span>
+        </button>
+      } @else {
+        <button class="solid" type="button">
+          Inscribirme
+          <span class="ms" aria-hidden="true">arrow_forward</span>
+        </button>
+      }
+      <button class="icon" type="button" [attr.aria-label]="'Guardar ' + event().name">
+        <span class="ms" aria-hidden="true">bookmark</span>
+      </button>
+    </div>
+  </footer>
+</article>
