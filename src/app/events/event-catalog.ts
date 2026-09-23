@@ -1,8 +1,8 @@
-import { Service, computed, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { Service, signal } from '@angular/core';
 import { debounce, form } from '@angular/forms/signals';
 
-import { EVENTS } from './event.data';
-import { City, EventCategory, EventModality } from './event.model';
+import { City, Event, EventCategory, EventModality } from './event.model';
 
 @Service()
 export class EventCatalog {
@@ -17,18 +17,19 @@ export class EventCatalog {
     debounce(path.query, 350);
   });
 
-  readonly filteredEvents = computed(() => {
+  readonly events = httpResource<Event[]>(() => {
     const { query, city, category, modality } = this.filters();
-    const search = query.trim().toLowerCase();
+    const q = query.trim();
 
-    return EVENTS.filter((event) => {
-      const matchesSearch = search === '' || event.name.toLowerCase().includes(search);
-      const matchesCity = city === 'all' || event.city === city;
-      const matchesCategory = category === 'all' || event.category === category;
-      const matchesModality = modality === 'all' || event.modality === modality;
-
-      return matchesSearch && matchesCity && matchesCategory && matchesModality;
-    });
+    return {
+      url: '/api/events',
+      params: {
+        q: q,
+        city: city,
+        category: category,
+        modality: modality,
+      },
+    };
   });
 
   reset(): void {

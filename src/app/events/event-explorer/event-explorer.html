@@ -65,32 +65,6 @@
     <div class="results">
       <p aria-live="polite">
         <span class="live-dot" aria-hidden="true"></span>
-        {{ catalog.filteredEvents().length }} eventos mostrados
-      </p>
-    </div>
-  </div>
-
-  <ul class="grid">
-    @for (event of catalog.filteredEvents(); track event.id) {
-    <li>
-      <app-event-card [event]="event" />
-    </li>
-    } @empty {
-    <li class="empty">
-      <span class="ms" aria-hidden="true">search_off</span>
-      <h2>No se encontraron eventos</h2>
-      <p>
-        Intenta modificando los filtros de búsqueda, seleccionando otra sede o explorando todas
-        las categorías disponibles.
-      </p>
-      <button type="button" (click)="catalog.reset()">Restablecer todos los filtros</button>
-    </li>
-    }
-  </ul>
-
-  <!--
-  HTTP states. Uncomment in the API phase.
-
         @if (catalog.events.isLoading()) {
         Cargando eventos...
         } @else if (catalog.events.error()) {
@@ -98,6 +72,9 @@
         } @else if (catalog.events.hasValue()) {
         {{ catalog.events.value().length }} eventos mostrados
         }
+      </p>
+    </div>
+  </div>
 
   @if (catalog.events.isLoading()) {
   <ul class="grid" aria-hidden="true">
@@ -131,5 +108,4 @@
     }
   </ul>
   }
-  -->
 </section>

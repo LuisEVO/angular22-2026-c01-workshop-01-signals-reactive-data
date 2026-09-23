@@ -251,7 +251,6 @@ h1 span {
   list-style: none;
 }
 
-/*
 .skeleton-card {
   min-height: 15.5rem;
   border: 1px solid #eceef2;
@@ -267,7 +266,6 @@ h1 span {
     background-position: -200% 0;
   }
 }
-*/
 
 .empty {
   display: grid;
