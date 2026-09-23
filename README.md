@@ -1,59 +1,62 @@
-# Angular222026C01Workshop01SignalsReactiveData
+# Workshop 01 — Signals y datos reactivos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+Angular 22. Catálogo de eventos con filtros locales, Signal Forms y `httpResource`.
 
-## Development server
-
-To start a local development server, run:
+## Instalación
 
 ```bash
-ng serve
+npm ci
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Ejecución
 
-## Code scaffolding
+Abrir dos terminales.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Terminal 1:
 
 ```bash
-ng generate component component-name
+npm run api
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Terminal 2:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+## URLs
 
-To build the project run:
+```text
+App: http://localhost:4200
+API health: http://127.0.0.1:3000/api/health
+```
+
+Angular consume la API mediante `/api` y no debe apuntar directamente a `http://localhost:3000` desde el código de la aplicación.
+
+## Tags
+
+```text
+w01-start     UI + dataset + API local
+w01-local     Signals + computed
+w01-forms     Signal Form + debounce en search
+w01-solution  httpResource
+```
+
+El starter oficial es `w01-start`.
+
+La API Node ya viene en el starter. No se desarrolla en el taller.
+
+## Filtros
+
+- búsqueda por `event.name` (`trim`, case-insensitive)
+- city / category / modality
+- `all` y `q` vacío los ignora el backend
+- debounce 350 ms solo en search, desde `w01-forms`
+
+## Scripts
 
 ```bash
-ng build
+npm start
+npm run api
+npm run build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

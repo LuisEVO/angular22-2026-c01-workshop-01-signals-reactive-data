@@ -9,12 +9,6 @@ export interface FilterOption<T extends string> {
   label: string;
 }
 
-export interface QuickFilter {
-  id: 'all' | 'popular' | EventCategory | 'free';
-  label: string;
-  icon?: string;
-}
-
 export const LOW_SEAT_THRESHOLD = 12;
 
 export const CITY_OPTIONS: readonly FilterOption<City>[] = [
