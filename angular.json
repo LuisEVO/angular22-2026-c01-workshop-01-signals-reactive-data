@@ -79,6 +79,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "angular22-2026-c01-workshop-01-signals-reactive-data:build:production"
